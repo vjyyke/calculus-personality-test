@@ -239,6 +239,13 @@ h1 {
   line-height: 1.8;
 }
 
+.resultActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
 @media (max-width: 720px) {
   .appShell {
     padding: 20px;

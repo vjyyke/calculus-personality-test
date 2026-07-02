@@ -15,19 +15,22 @@ export default function App() {
   const [started, setStarted] = useState(false);
   const [answers, setAnswers] = useState<QuizAnswers>({});
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [reviewingAnswers, setReviewingAnswers] = useState(false);
 
   const currentQuestion = questions[questionIndex];
   const state = useMemo(() => buildStateFromAnswers(answers, questions), [answers]);
   const prompt =
     typeof currentQuestion.prompt === "function" ? currentQuestion.prompt(state) : currentQuestion.prompt;
   const options = getQuestionOptions(currentQuestion, state);
-  const complete = questions.every((question) => answers[question.id]);
+  const complete = !reviewingAnswers && questions.every((question) => answers[question.id]);
 
   const handleAnswer = (answerId: AnswerOption["id"]) => {
     setAnswers((currentAnswers) => answerQuestion(currentAnswers, currentQuestion.id, answerId));
 
     if (questionIndex < questions.length - 1) {
       setQuestionIndex((currentIndex) => getNextQuestionIndex(currentIndex, questions.length));
+    } else {
+      setReviewingAnswers(false);
     }
   };
 
@@ -59,17 +62,30 @@ export default function App() {
               {scored.chineseCode} / {scored.code}
             </p>
             <p className="resultShort">{result.shortDescription}</p>
-            <button
-              className="primaryButton"
-              type="button"
-              onClick={() => {
-                setAnswers({});
-                setQuestionIndex(0);
-                setStarted(false);
-              }}
-            >
-              重新测试
-            </button>
+            <div className="resultActions">
+              <button
+                className="ghostButton"
+                type="button"
+                onClick={() => {
+                  setQuestionIndex(questions.length - 1);
+                  setReviewingAnswers(true);
+                }}
+              >
+                返回修改答案
+              </button>
+              <button
+                className="primaryButton"
+                type="button"
+                onClick={() => {
+                  setAnswers({});
+                  setQuestionIndex(0);
+                  setReviewingAnswers(false);
+                  setStarted(false);
+                }}
+              >
+                重新测试
+              </button>
+            </div>
           </article>
         </section>
       </main>
