@@ -3,18 +3,13 @@ import { cleanup, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import App from "./App";
-import { saveElementAsPng } from "./lib/shareImage";
-
-vi.mock("./lib/shareImage", () => ({
-  saveElementAsPng: vi.fn().mockResolvedValue(undefined),
-}));
 
 afterEach(() => {
   cleanup();
 });
 
 beforeEach(() => {
-  vi.mocked(saveElementAsPng).mockClear();
+  vi.clearAllMocks();
 });
 
 const clickFirstAnswer = async (user: ReturnType<typeof userEvent.setup>) => {
@@ -48,7 +43,7 @@ describe("App", () => {
     }
 
     expect(screen.getByText("人格判定证书")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "保存结果长图" })).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "保存结果长图" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "保存精简证书卡" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "保存完整报告图" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "复制结果文字" })).not.toBeInTheDocument();
@@ -82,7 +77,7 @@ describe("App", () => {
     expect(imagePanel?.nextElementSibling).toBe(content);
   });
 
-  it("saves one long report image without including controls in the export target", async () => {
+  it("keeps result actions outside the long report export target", async () => {
     const user = userEvent.setup();
     render(<App />);
 
@@ -96,11 +91,8 @@ describe("App", () => {
     expect(longReport).not.toBeNull();
     expect(longReport).toContainElement(screen.getByText("人格判定证书"));
     expect(longReport).toContainElement(screen.getByText("完整解读"));
-    expect(longReport).not.toContainElement(screen.getByRole("button", { name: "保存结果长图" }));
     expect(longReport).not.toContainElement(screen.getByRole("button", { name: "重新测试" }));
-
-    await user.click(screen.getByRole("button", { name: "保存结果长图" }));
-    expect(saveElementAsPng).toHaveBeenCalledWith("result-long-report", expect.stringContaining("long-report"));
+    expect(screen.queryByRole("button", { name: "保存结果长图" })).not.toBeInTheDocument();
   });
 
   it("returns from the result to the final question with the answer preserved", async () => {

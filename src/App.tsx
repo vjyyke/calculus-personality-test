@@ -4,7 +4,6 @@ import { Home } from "./components/Home";
 import { QuizCard } from "./components/QuizCard";
 import { ReportDetails } from "./components/ReportDetails";
 import { ResultCertificate } from "./components/ResultCertificate";
-import { ShareActions } from "./components/ShareActions";
 import { questions, results, type AnswerOption } from "./data/testData";
 import {
   answerQuestion,
@@ -60,7 +59,6 @@ export default function App() {
           <ReportDetails result={result} scored={scored} />
         </div>
         <div className="resultControlPanel">
-          <ShareActions result={result} scored={scored} />
           <div className="resultActions">
             <button
               className="ghostButton"
