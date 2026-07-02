@@ -2,6 +2,8 @@ import { useMemo, useState } from "react";
 
 import { Home } from "./components/Home";
 import { QuizCard } from "./components/QuizCard";
+import { ReportDetails } from "./components/ReportDetails";
+import { ResultCertificate } from "./components/ResultCertificate";
 import { questions, results, type AnswerOption } from "./data/testData";
 import {
   answerQuestion,
@@ -52,42 +54,21 @@ export default function App() {
 
     return (
       <main className="appShell">
-        <section className="resultHero">
-          <article className="questionCard">
-            <p className="questionKicker">人格判定证书</p>
-            <h2>
-              {result.typeName}｜{result.shortName}
-            </h2>
-            <p className="resultCode">
-              {scored.chineseCode} / {scored.code}
-            </p>
-            <p className="resultShort">{result.shortDescription}</p>
-            <div className="resultActions">
-              <button
-                className="ghostButton"
-                type="button"
-                onClick={() => {
-                  setQuestionIndex(questions.length - 1);
-                  setReviewingAnswers(true);
-                }}
-              >
-                返回修改答案
-              </button>
-              <button
-                className="primaryButton"
-                type="button"
-                onClick={() => {
-                  setAnswers({});
-                  setQuestionIndex(0);
-                  setReviewingAnswers(false);
-                  setStarted(false);
-                }}
-              >
-                重新测试
-              </button>
-            </div>
-          </article>
-        </section>
+        <ResultCertificate result={result} scored={scored} />
+        <ReportDetails
+          result={result}
+          scored={scored}
+          onReviewAnswers={() => {
+            setQuestionIndex(questions.length - 1);
+            setReviewingAnswers(true);
+          }}
+          onRestart={() => {
+            setAnswers({});
+            setQuestionIndex(0);
+            setReviewingAnswers(false);
+            setStarted(false);
+          }}
+        />
       </main>
     );
   }

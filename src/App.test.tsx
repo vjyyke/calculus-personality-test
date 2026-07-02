@@ -30,6 +30,9 @@ describe("App", () => {
     }
 
     expect(screen.getByText("人格判定证书")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "保存精简证书卡" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "保存完整报告图" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "复制结果文字" })).toBeInTheDocument();
   });
 
   it("returns from the result to the final question with the answer preserved", async () => {
