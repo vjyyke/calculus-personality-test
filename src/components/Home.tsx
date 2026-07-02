@@ -16,10 +16,12 @@ export function Home({ onStart }: HomeProps) {
         </button>
       </div>
       <div className="heroNotebook" aria-hidden="true">
-        <img
-          src="/personality_characters_d_route/00_contact_sheet_16_characters.png"
-          alt=""
-        />
+        <div className="formulaField">
+          <span className="formulaSymbol">∫</span>
+          <span className="formulaLine">lim x→0</span>
+          <span className="formulaLine">Σ aₙ</span>
+          <span className="formulaTrace">判断、构造、拆解、统摄</span>
+        </div>
       </div>
     </section>
   );

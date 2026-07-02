@@ -300,7 +300,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你通常会先观察局面，再按可靠规则一步步处理。你重视边界、细节和责任感，不太喜欢在信息不全时贸然决定。别人会觉得你稳、细、值得托付；但你有时也会因为想确认得更完整，而比别人更晚行动。",
     shortDescription: "你先观察局面，再按可靠规则稳步推进，重视边界、细节和责任感。",
-    image: "/personality_characters_d_route/01_C-R-P-B_shouxuzhe.png",
+    image: "personality_characters_d_route/01_C-R-P-B_shouxuzhe.png",
   },
   "C-R-P-F": {
     code: "C-R-P-F",
@@ -310,7 +310,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你很会抓现场的关键点，也愿意借助规则和经验快速推进。你不是盲目冲动的人，但你不喜欢一直停在分析阶段。你的性格里有一种“看准就做”的劲头，适合处理需要判断力和行动力并存的任务。",
     shortDescription: "你善于抓住现场关键点，并借助规则和经验快速推进。",
-    image: "/personality_characters_d_route/02_C-R-P-F_xingdongpai.png",
+    image: "personality_characters_d_route/02_C-R-P-F_xingdongpai.png",
   },
   "C-R-W-B": {
     code: "C-R-W-B",
@@ -320,7 +320,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你倾向于先看整体局面，再用清晰的框架安排行动。你喜欢有秩序、有依据的方案，也愿意为长期稳定投入耐心。你的优势是能把复杂关系整理成可执行的计划；弱点是面对突然变化时，可能需要一点时间重新校准。",
     shortDescription: "你先看整体局面，再用清晰框架把复杂关系整理成可执行计划。",
-    image: "/personality_characters_d_route/03_C-R-W-B_guihuazhe.png",
+    image: "personality_characters_d_route/03_C-R-W-B_guihuazhe.png",
   },
   "C-R-W-F": {
     code: "C-R-W-F",
@@ -330,7 +330,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你看问题很重视整体感，也能很快找到可借力的规则和捷径。你适合在混乱场面中迅速判断方向，把事情带回主线。你给人的感觉通常是反应快、判断准，但需要留意别让速度压过必要的确认。",
     shortDescription: "你重视整体感，能在混乱场面中快速判断方向并带回主线。",
-    image: "/personality_characters_d_route/04_C-R-W-F_tongchouzhe.png",
+    image: "personality_characters_d_route/04_C-R-W-F_tongchouzhe.png",
   },
   "C-X-P-B": {
     code: "C-X-P-B",
@@ -340,7 +340,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你相信直觉和现场感，但不会只凭感觉做决定。你愿意一点点试、一点点修，把模糊想法变成可靠路径。你通常有耐心，也比较能理解复杂处境中的细微差别；只是有时会因为可探索的方向太多而变慢。",
     shortDescription: "你用直觉和小步试探把模糊想法慢慢修成可靠路径。",
-    image: "/personality_characters_d_route/05_C-X-P-B_tanluzhe.png",
+    image: "personality_characters_d_route/05_C-X-P-B_tanluzhe.png",
   },
   "C-X-P-F": {
     code: "C-X-P-F",
@@ -350,7 +350,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你很擅长从具体场景中试出办法，愿意用小实验、小调整找到突破口。你不太喜欢僵硬流程，更相信边走边看的判断。你的性格轻快、适应力强，但在重要决定上，需要给自己多留一步复核。",
     shortDescription: "你擅长在具体场景里用小实验和小调整找出突破口。",
-    image: "/personality_characters_d_route/06_C-X-P-F_biantongpai.png",
+    image: "personality_characters_d_route/06_C-X-P-F_biantongpai.png",
   },
   "C-X-W-B": {
     code: "C-X-W-B",
@@ -360,7 +360,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你能把很多分散的信息放在一起看，并努力找到一个大家都能接受的整体方案。你既重视直觉，也愿意把直觉整理成稳定结构。你适合协调复杂关系、搭建长期系统；有时需要避免为了兼顾太多而牺牲决断。",
     shortDescription: "你能整合分散信息，协调复杂关系，并搭建稳定的整体方案。",
-    image: "/personality_characters_d_route/07_C-X-W-B_tiaohezhe.png",
+    image: "personality_characters_d_route/07_C-X-W-B_tiaohezhe.png",
   },
   "C-X-W-F": {
     code: "C-X-W-F",
@@ -370,7 +370,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你喜欢从整体氛围和关系中发现新的可能，也敢于重组已有做法。你通常不满足于照旧执行，而会寻找更自然、更省力的路径。你有创造力和适应力，但需要在灵感之外保留一点落地检查。",
     shortDescription: "你善于从整体关系中发现新可能，并重组做法找到更自然的路径。",
-    image: "/personality_characters_d_route/08_C-X-W-F_chuangxiangzhe.png",
+    image: "personality_characters_d_route/08_C-X-W-F_chuangxiangzhe.png",
   },
   "L-R-P-B": {
     code: "L-R-P-B",
@@ -380,7 +380,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你习惯先看信息结构、规则和逻辑，再把事情拆成清楚的小步骤。你做事稳、认真、可预测，不喜欢模糊承诺。别人会觉得你靠谱、理性，但你有时也会显得不够放松，或者对不确定性比较敏感。",
     shortDescription: "你先看结构、规则和逻辑，再把事情拆成清楚可靠的小步骤。",
-    image: "/personality_characters_d_route/09_L-R-P-B_fenxizhe.png",
+    image: "personality_characters_d_route/09_L-R-P-B_fenxizhe.png",
   },
   "L-R-P-F": {
     code: "L-R-P-F",
@@ -390,7 +390,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你重视逻辑和依据，也很在意效率。你会先找到规则，再尽量用更简洁的方式完成目标。你适合处理信息密集、时间有限的问题；需要注意的是，太追求高效时，可能会低估他人的理解速度。",
     shortDescription: "你重视逻辑依据和效率，擅长用简洁方式处理时间有限的问题。",
-    image: "/personality_characters_d_route/10_L-R-P-F_sujuezhe.png",
+    image: "personality_characters_d_route/10_L-R-P-F_sujuezhe.png",
   },
   "L-R-W-B": {
     code: "L-R-W-B",
@@ -400,7 +400,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你喜欢从结构和原则层面理解问题，再用稳定框架管理复杂局面。你做决定时重视一致性、长期性和可解释性。你的优势是清楚、有条理、有系统感；弱点是有时会显得过于严谨，不太愿意接受临时变化。",
     shortDescription: "你从结构和原则理解问题，并用稳定框架管理复杂局面。",
-    image: "/personality_characters_d_route/11_L-R-W-B_jiagouzhe.png",
+    image: "personality_characters_d_route/11_L-R-W-B_jiagouzhe.png",
   },
   "L-R-W-F": {
     code: "L-R-W-F",
@@ -410,7 +410,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你能快速识别问题背后的结构，并做出清楚判断。你不喜欢拖泥带水，也不太满足于零散处理。你给人的感觉是脑子清楚、表达直接、推进有力；需要留意的是，快判断也要给复杂情绪和例外情况留空间。",
     shortDescription: "你能快速识别问题结构并做出清楚、有力的判断。",
-    image: "/personality_characters_d_route/12_L-R-W-F_jueduanzhe.png",
+    image: "personality_characters_d_route/12_L-R-W-F_jueduanzhe.png",
   },
   "L-X-P-B": {
     code: "L-X-P-B",
@@ -420,7 +420,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你会仔细观察信息内部的细节，然后一点点改造问题。你不一定喜欢大张旗鼓地改变，但很擅长局部优化、修正漏洞和做出实际改进。你稳中有创造力，只是有时会把太多精力花在细节打磨上。",
     shortDescription: "你仔细观察信息细节，擅长局部优化、修正漏洞和实际改进。",
-    image: "/personality_characters_d_route/13_L-X-P-B_gaijinzhe.png",
+    image: "personality_characters_d_route/13_L-X-P-B_gaijinzhe.png",
   },
   "L-X-P-F": {
     code: "L-X-P-F",
@@ -430,7 +430,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你对信息变化很敏感，能迅速换一种说法、换一条路径、换一个解决办法。你有灵活的脑筋，也不怕尝试非标准方案。你的优势是适应快、点子多；需要注意的是，别让变化太快导致别人跟不上。",
     shortDescription: "你对信息变化敏感，能迅速换路径并尝试非标准方案。",
-    image: "/personality_characters_d_route/14_L-X-P-F_jibianzhe.png",
+    image: "personality_characters_d_route/14_L-X-P-F_jibianzhe.png",
   },
   "L-X-W-B": {
     code: "L-X-W-B",
@@ -440,7 +440,7 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你喜欢把复杂信息重组为一个更清楚的系统。你既有创造性，也重视稳定性，常常能在混乱中搭出可持续的结构。你适合做需要抽象能力和耐心推进的事；有时需要更早把想法讲给别人听。",
     shortDescription: "你能把复杂信息重组为清楚、稳定且可持续的系统。",
-    image: "/personality_characters_d_route/15_L-X-W-B_zhenglizhe.png",
+    image: "personality_characters_d_route/15_L-X-W-B_zhenglizhe.png",
   },
   "L-X-W-F": {
     code: "L-X-W-F",
@@ -450,6 +450,6 @@ export const results: Record<string, PersonalityResult> = {
     description:
       "你很擅长从复杂信息里看出隐藏联系，并用新的结构重组它。你不喜欢只按旧方法走，常常会提出更简洁或更有想象力的方案。你有明显的创造倾向，但需要把关键步骤说清楚，避免别人只看到结论看不到路径。",
     shortDescription: "你擅长发现复杂信息里的隐藏联系，并用新结构提出更有想象力的方案。",
-    image: "/personality_characters_d_route/16_L-X-W-F_chuanggouzhe.png",
+    image: "personality_characters_d_route/16_L-X-W-F_chuanggouzhe.png",
   },
 };

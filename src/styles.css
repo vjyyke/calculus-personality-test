@@ -67,29 +67,73 @@ h1 {
 }
 
 .heroNotebook {
+  position: relative;
+  overflow: hidden;
   min-height: 420px;
   border: 1px solid rgba(127, 107, 178, 0.26);
   border-radius: 8px;
-  padding: 18px;
+  padding: clamp(24px, 4vw, 42px);
   background:
+    radial-gradient(circle at 72% 24%, rgba(127, 107, 178, 0.2), transparent 30%),
+    radial-gradient(circle at 24% 74%, rgba(85, 139, 116, 0.18), transparent 32%),
     linear-gradient(90deg, rgba(127, 107, 178, 0.12) 1px, transparent 1px) 42px 0 / 24px 24px,
     linear-gradient(rgba(92, 126, 111, 0.13) 1px, transparent 1px) 0 0 / 24px 24px,
-    rgba(255, 255, 255, 0.78);
+    rgba(255, 255, 255, 0.82);
   box-shadow: 0 22px 60px rgba(60, 74, 82, 0.12);
 }
 
-.heroNotebook img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  max-height: 560px;
-  object-fit: contain;
-  border-radius: 6px;
+.formulaField {
+  position: relative;
+  min-height: 340px;
+  display: grid;
+  align-content: center;
+  gap: 18px;
+  color: #292836;
+}
+
+.formulaField::before {
+  position: absolute;
+  inset: 42px 18px auto auto;
+  width: 180px;
+  height: 180px;
+  border: 1px solid rgba(127, 107, 178, 0.28);
+  border-radius: 50%;
+  background:
+    linear-gradient(90deg, transparent 48%, rgba(127, 107, 178, 0.35) 50%, transparent 52%),
+    linear-gradient(transparent 48%, rgba(92, 126, 111, 0.28) 50%, transparent 52%);
+  content: "";
+  transform: rotate(-11deg);
+}
+
+.formulaSymbol {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(8rem, 18vw, 13rem);
+  line-height: 0.8;
+  color: rgba(127, 107, 178, 0.86);
+}
+
+.formulaLine {
+  width: fit-content;
+  border-bottom: 1px solid rgba(92, 126, 111, 0.28);
+  color: #454758;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 4vw, 2.4rem);
+}
+
+.formulaTrace {
+  width: fit-content;
+  margin-top: 8px;
+  border: 1px solid rgba(127, 107, 178, 0.24);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: #635785;
+  background: rgba(255, 255, 255, 0.66);
+  font-weight: 700;
 }
 
 .quizPage,
 .resultHero {
-  width: min(100%, 820px);
+  width: min(100%, 860px);
   min-height: calc(100vh - 64px);
   margin: 0 auto;
   display: grid;
@@ -239,17 +283,68 @@ h1 {
   line-height: 1.8;
 }
 
-.certificateCard {
-  border: 1px solid rgba(114, 134, 124, 0.25);
-  border-radius: 8px;
+.certificatePoster {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0;
   padding: clamp(22px, 4vw, 36px);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(249, 252, 248, 0.9)),
-    #ffffff;
-  box-shadow: 0 24px 64px rgba(57, 71, 78, 0.14);
+    radial-gradient(circle at 75% 28%, rgba(127, 107, 178, 0.2), transparent 34%),
+    radial-gradient(circle at 35% 72%, rgba(86, 139, 116, 0.14), transparent 30%),
+    linear-gradient(100deg, rgba(255, 255, 255, 0.96) 0%, rgba(246, 250, 247, 0.72) 46%, rgba(247, 244, 251, 0.56) 100%),
+    #f8fbf8;
+}
+
+.certificatePortrait {
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+}
+
+.posterImagePanel {
+  position: relative;
+  width: min(100%, 600px);
+  min-height: clamp(360px, 54vw, 540px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 48% 38%, rgba(127, 107, 178, 0.22), transparent 34%),
+    radial-gradient(circle at 62% 62%, rgba(91, 137, 118, 0.14), transparent 36%),
+    rgba(255, 255, 255, 0.52);
+}
+
+.posterImagePanel::before {
+  position: absolute;
+  inset: 9% 10%;
+  border: 1px solid rgba(127, 107, 178, 0.2);
+  border-radius: 50%;
+  content: "";
+  transform: rotate(-10deg);
+}
+
+.posterCharacter {
+  position: relative;
+  z-index: 1;
+  width: min(94%, 500px);
+  max-height: 94%;
+  object-fit: contain;
+  border-radius: 24px;
+  filter: drop-shadow(0 26px 32px rgba(57, 71, 78, 0.22));
+}
+
+.certificateContent {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 680px);
+  display: grid;
+  justify-items: center;
+  text-align: center;
 }
 
 .certificateMeta {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -260,20 +355,10 @@ h1 {
 }
 
 .certificateBody {
+  width: 100%;
   display: grid;
-  grid-template-columns: minmax(160px, 240px) minmax(0, 1fr);
-  align-items: center;
   gap: clamp(22px, 5vw, 42px);
   margin-top: 28px;
-}
-
-.resultCharacter {
-  display: block;
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: contain;
-  border-radius: 8px;
-  background: rgba(243, 247, 244, 0.82);
 }
 
 .certificateBody h2 {
@@ -283,11 +368,13 @@ h1 {
   line-height: 1.25;
 }
 
-.certificateCard .resultShort {
+.certificatePoster .resultShort {
   margin-bottom: 0;
 }
 
 .dimensionChips {
+  width: 100%;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -310,10 +397,21 @@ h1 {
 }
 
 .reportSection {
-  width: min(100%, 820px);
+  width: min(100%, 1080px);
   margin: 0 auto 48px;
   display: grid;
   gap: 22px;
+}
+
+.reportExport {
+  display: grid;
+  gap: 28px;
+  border: 1px solid rgba(114, 134, 124, 0.24);
+  border-radius: 8px;
+  padding: clamp(22px, 4vw, 34px);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(249, 252, 248, 0.9)),
+    #ffffff;
 }
 
 .reportText {
@@ -331,43 +429,100 @@ h1 {
   margin: 0;
 }
 
-.scoreGrid {
+.dimensionReportGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
 }
 
-.scorePanel {
+.dimensionReport {
   border: 1px solid rgba(114, 134, 124, 0.24);
   border-radius: 8px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.78);
 }
 
-.scorePanel h3 {
+.dimensionReportHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dimensionReportHeader h3 {
   margin: 0 0 8px;
   color: #292836;
   font-size: 1rem;
 }
 
-.scorePanel p {
-  margin: 0;
-  color: #635785;
+.dimensionReportHeader span {
+  display: inline-grid;
+  min-width: 34px;
+  min-height: 34px;
+  place-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  background: #7f6bb2;
   font-weight: 700;
 }
 
-.shareActions {
+.dimensionBar {
+  height: 14px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(127, 107, 178, 0.12);
 }
 
+.dimensionBarLeft {
+  background: #6e9b86;
+}
+
+.dimensionBarRight {
+  background: #7f6bb2;
+}
+
+.dimensionBarLabels {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  color: #635785;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.dimensionReport h4 {
+  margin: 18px 0 8px;
+  color: #292836;
+  font-size: 1rem;
+}
+
+.dimensionReport p {
+  margin: 0;
+  color: #454758;
+  line-height: 1.75;
+}
+
+.resultControlPanel {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.shareActions,
 .resultActions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   align-items: center;
+  justify-content: center;
+}
+
+.shareStatus {
+  margin: 0;
+  color: #6f7482;
+  font-size: 0.92rem;
 }
 
 @media (max-width: 720px) {
@@ -386,36 +541,43 @@ h1 {
     padding: 12px;
   }
 
+  .formulaField {
+    min-height: 260px;
+  }
+
+  .formulaField::before {
+    width: 130px;
+    height: 130px;
+  }
+
   .quizPage,
   .resultHero {
     min-height: calc(100vh - 40px);
   }
 
-  .certificateBody,
-  .scoreGrid {
+  .certificatePoster {
+    min-height: auto;
+  }
+
+  .posterImagePanel {
+    min-height: 320px;
+    border-radius: 22px;
+  }
+
+  .dimensionReportGrid {
     grid-template-columns: 1fr;
-  }
-
-  .resultCharacter {
-    max-width: 260px;
-    justify-self: center;
-  }
-
-  .certificateMeta,
-  .shareActions,
-  .resultActions {
-    align-items: stretch;
   }
 
   .shareActions,
   .resultActions {
     flex-direction: column;
+    align-items: center;
   }
 
   .shareActions .primaryButton,
   .shareActions .ghostButton,
   .resultActions .ghostButton {
-    width: 100%;
+    width: min(100%, 335px);
   }
 
   .progressRow {

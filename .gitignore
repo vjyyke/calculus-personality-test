@@ -2,3 +2,8 @@
 .superpowers/
 node_modules/
 dist/
+pnpm-lock.yaml
+pnpm-workspace.yaml
+personality_characters_d_route/
+高数解题人格测试.md
+问题分支Map.md
