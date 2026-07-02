@@ -1,0 +1,70 @@
+:root {
+  color: #292836;
+  background: #f7f5f1;
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button {
+  font: inherit;
+}
+
+.appShell {
+  min-height: 100vh;
+  padding: 32px;
+}
+
+.notebookHero {
+  max-width: 1120px;
+  margin: 0 auto;
+  min-height: calc(100vh - 64px);
+  display: grid;
+  align-content: center;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: #706f7e;
+  font-size: 0.9rem;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  line-height: 1.05;
+}
+
+.heroCopy {
+  max-width: 620px;
+  margin: 20px 0 28px;
+  color: #454453;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.primaryButton {
+  width: fit-content;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 22px;
+  color: #ffffff;
+  background: #7f6bb2;
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .appShell {
+    padding: 20px;
+  }
+}
