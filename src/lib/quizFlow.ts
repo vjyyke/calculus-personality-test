@@ -9,6 +9,10 @@ export function answerQuestion(
   questionId: QuestionId,
   answerId: AnswerOption["id"],
 ): QuizAnswers {
+  if (current[questionId] === answerId) {
+    return current;
+  }
+
   const changedIndex = questionOrder.indexOf(questionId);
   const nextAnswers: QuizAnswers = {};
 
@@ -23,7 +27,11 @@ export function answerQuestion(
 }
 
 export function getNextQuestionIndex(currentIndex: number, total: number) {
-  return Math.min(currentIndex + 1, total - 1);
+  if (total <= 0) {
+    return 0;
+  }
+
+  return Math.min(Math.max(currentIndex + 1, 0), total - 1);
 }
 
 export function getPreviousQuestionIndex(currentIndex: number) {

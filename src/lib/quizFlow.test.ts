@@ -15,9 +15,21 @@ describe("quizFlow", () => {
     expect(answers).toEqual({ q1: "A", q2: "A" });
   });
 
+  it("preserves downstream answers when the answer is unchanged", () => {
+    const answers = answerQuestion({ q1: "A", q2: "B", q3: "C" }, "q2", "B");
+
+    expect(answers).toEqual({ q1: "A", q2: "B", q3: "C" });
+  });
+
   it("calculates next question index", () => {
     expect(getNextQuestionIndex(0, 8)).toBe(1);
     expect(getNextQuestionIndex(7, 8)).toBe(7);
+  });
+
+  it("clamps next question index at 0", () => {
+    expect(getNextQuestionIndex(0, 0)).toBe(0);
+    expect(getNextQuestionIndex(0, -1)).toBe(0);
+    expect(getNextQuestionIndex(-5, 8)).toBe(0);
   });
 
   it("clamps previous question index at 0", () => {
