@@ -4,6 +4,7 @@ import { Home } from "./components/Home";
 import { QuizCard } from "./components/QuizCard";
 import { ReportDetails } from "./components/ReportDetails";
 import { ResultCertificate } from "./components/ResultCertificate";
+import { ShareActions } from "./components/ShareActions";
 import { questions, results, type AnswerOption } from "./data/testData";
 import {
   answerQuestion,
@@ -54,21 +55,37 @@ export default function App() {
 
     return (
       <main className="appShell">
-        <ResultCertificate result={result} scored={scored} />
-        <ReportDetails
-          result={result}
-          scored={scored}
-          onReviewAnswers={() => {
-            setQuestionIndex(questions.length - 1);
-            setReviewingAnswers(true);
-          }}
-          onRestart={() => {
-            setAnswers({});
-            setQuestionIndex(0);
-            setReviewingAnswers(false);
-            setStarted(false);
-          }}
-        />
+        <div className="resultLongReport" id="result-long-report">
+          <ResultCertificate result={result} scored={scored} />
+          <ReportDetails result={result} scored={scored} />
+        </div>
+        <div className="resultControlPanel">
+          <ShareActions result={result} scored={scored} />
+          <div className="resultActions">
+            <button
+              className="ghostButton"
+              type="button"
+              onClick={() => {
+                setQuestionIndex(questions.length - 1);
+                setReviewingAnswers(true);
+              }}
+            >
+              返回修改答案
+            </button>
+            <button
+              className="ghostButton"
+              type="button"
+              onClick={() => {
+                setAnswers({});
+                setQuestionIndex(0);
+                setReviewingAnswers(false);
+                setStarted(false);
+              }}
+            >
+              重新测试
+            </button>
+          </div>
+        </div>
       </main>
     );
   }

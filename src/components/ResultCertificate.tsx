@@ -7,13 +7,11 @@ type ResultCertificateProps = {
 };
 
 export function ResultCertificate({ result, scored }: ResultCertificateProps) {
-  const dimensions = scored.chineseCode.split("-");
-
   return (
     <section className="resultHero" aria-labelledby="certificate-title">
-      <div className="certificatePoster certificatePortrait" id="compact-certificate">
-        <div className="posterImagePanel" aria-hidden="true">
-          <img className="posterCharacter" src={result.image} alt="" />
+      <div className="certificatePoster certificatePortrait">
+        <div className="posterImagePanel">
+          <img className="posterCharacter" src={result.image} alt={`${result.shortName} 角色图`} />
         </div>
         <div className="certificateContent">
           <div className="certificateMeta">
@@ -31,12 +29,6 @@ export function ResultCertificate({ result, scored }: ResultCertificateProps) {
               </p>
               <p className="resultShort">{result.shortDescription}</p>
             </div>
-          </div>
-          <div className="dimensionChips">
-            <span>信息入口：{dimensions[0]}</span>
-            <span>决策依据：{dimensions[1]}</span>
-            <span>处理方式：{dimensions[2]}</span>
-            <span>行动偏好：{dimensions[3]}</span>
           </div>
           <p className="certificateFooter">高数解题人格测试</p>
         </div>

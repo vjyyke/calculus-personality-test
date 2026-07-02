@@ -1,16 +1,13 @@
 import type { PersonalityResult } from "../data/testData";
 import { getDimensionComparisons } from "../lib/dimensions";
 import type { ScoredResult } from "../lib/scoring";
-import { ShareActions } from "./ShareActions";
 
 type ReportDetailsProps = {
   result: PersonalityResult;
   scored: ScoredResult;
-  onRestart: () => void;
-  onReviewAnswers: () => void;
 };
 
-export function ReportDetails({ result, scored, onRestart, onReviewAnswers }: ReportDetailsProps) {
+export function ReportDetails({ result, scored }: ReportDetailsProps) {
   const comparisons = getDimensionComparisons(scored);
 
   return (
@@ -56,17 +53,6 @@ export function ReportDetails({ result, scored, onRestart, onReviewAnswers }: Re
               <p>{comparison.insight}</p>
             </div>
           ))}
-        </div>
-      </div>
-      <div className="resultControlPanel">
-        <ShareActions result={result} scored={scored} />
-        <div className="resultActions">
-          <button className="ghostButton" type="button" onClick={onReviewAnswers}>
-            返回修改答案
-          </button>
-          <button className="ghostButton" type="button" onClick={onRestart}>
-            重新测试
-          </button>
         </div>
       </div>
     </section>

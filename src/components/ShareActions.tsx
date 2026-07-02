@@ -10,25 +10,21 @@ type ShareActionsProps = {
 };
 
 export function ShareActions({ result, scored }: ShareActionsProps) {
-  const [pendingTarget, setPendingTarget] = useState<"compact" | "full" | null>(null);
+  const [pending, setPending] = useState(false);
   const [status, setStatus] = useState("");
-  const certificateFilename = `calculus-persona-${scored.code}-certificate.png`;
-  const fullReportFilename = `calculus-persona-${scored.code}-full-report.png`;
+  const filename = `calculus-persona-${scored.code}-long-report.png`;
 
-  const handleSave = async (target: "compact" | "full") => {
-    const elementId = target === "compact" ? "compact-certificate" : "full-report";
-    const filename = target === "compact" ? certificateFilename : fullReportFilename;
-
-    setPendingTarget(target);
+  const handleSave = async () => {
+    setPending(true);
     setStatus("");
 
     try {
-      await saveElementAsPng(elementId, filename);
-      setStatus(target === "compact" ? "精简证书已生成" : "完整报告已生成");
+      await saveElementAsPng("result-long-report", filename);
+      setStatus(`${result.shortName}长图已生成`);
     } catch {
       setStatus("保存失败，请稍后重试");
     } finally {
-      setPendingTarget(null);
+      setPending(false);
     }
   };
 
@@ -37,18 +33,10 @@ export function ShareActions({ result, scored }: ShareActionsProps) {
       <button
         type="button"
         className="primaryButton"
-        disabled={pendingTarget !== null}
-        onClick={() => void handleSave("compact")}
+        disabled={pending}
+        onClick={() => void handleSave()}
       >
-        {pendingTarget === "compact" ? "正在生成..." : "保存精简证书卡"}
-      </button>
-      <button
-        type="button"
-        className="ghostButton"
-        disabled={pendingTarget !== null}
-        onClick={() => void handleSave("full")}
-      >
-        {pendingTarget === "full" ? "正在生成..." : "保存完整报告图"}
+        {pending ? "正在生成..." : "保存结果长图"}
       </button>
       {status ? (
         <p className="shareStatus" role="status">

@@ -1,6 +1,16 @@
 :root {
-  color: #292836;
-  background: #f3f7f4;
+  color: #2f2a23;
+  background: #f4ead8;
+  --paper: #f4ead8;
+  --paper-soft: #fbf5ea;
+  --paper-warm: #ead8bd;
+  --ink: #2f2a23;
+  --muted: #766b5c;
+  --sage: #667f63;
+  --sage-soft: rgba(102, 127, 99, 0.18);
+  --terracotta: #a9543a;
+  --ochre: #b78a50;
+  --line: rgba(91, 76, 56, 0.16);
   font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,9 +25,9 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    linear-gradient(rgba(124, 151, 139, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124, 151, 139, 0.08) 1px, transparent 1px),
-    #f3f7f4;
+    linear-gradient(rgba(111, 92, 66, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(111, 92, 66, 0.08) 1px, transparent 1px),
+    var(--paper);
   background-size: 28px 28px;
 }
 
@@ -31,23 +41,26 @@ button {
 }
 
 .homePage {
-  max-width: 1120px;
+  width: min(100%, 720px);
   margin: 0 auto;
   min-height: calc(100vh - 64px);
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
-  align-items: center;
-  gap: 48px;
+  place-items: center;
+  text-align: center;
+}
+
+.homeCentered {
+  align-content: center;
 }
 
 .heroText {
   display: grid;
-  justify-items: start;
+  justify-items: center;
 }
 
 .eyebrow {
   margin: 0 0 12px;
-  color: #6f7482;
+  color: var(--muted);
   font-size: 0.9rem;
   letter-spacing: 0;
 }
@@ -61,7 +74,7 @@ h1 {
 .heroCopy {
   max-width: 620px;
   margin: 20px 0 28px;
-  color: #454758;
+  color: #4d4337;
   font-size: 1.08rem;
   line-height: 1.8;
 }
@@ -146,7 +159,7 @@ h1 {
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 16px;
-  color: #6b6f7a;
+  color: var(--muted);
   font-size: 0.88rem;
 }
 
@@ -154,34 +167,34 @@ h1 {
   height: 7px;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(127, 107, 178, 0.14);
+  background: rgba(102, 127, 99, 0.16);
 }
 
 .progressFill {
   height: 100%;
   border-radius: inherit;
-  background: #7f6bb2;
+  background: var(--terracotta);
   transition: width 180ms ease;
 }
 
 .questionCard {
-  border: 1px solid rgba(114, 134, 124, 0.25);
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: clamp(24px, 5vw, 42px);
-  background: rgba(255, 255, 255, 0.88);
-  box-shadow: 0 18px 48px rgba(57, 71, 78, 0.12);
+  background: rgba(251, 245, 234, 0.92);
+  box-shadow: 0 18px 48px rgba(88, 66, 42, 0.12);
 }
 
 .questionKicker {
   margin: 0 0 12px;
-  color: #7f6bb2;
+  color: var(--terracotta);
   font-size: 0.95rem;
   font-weight: 700;
 }
 
 .questionCard h2 {
   margin: 0;
-  color: #292836;
+  color: var(--ink);
   font-size: clamp(1.55rem, 4vw, 2.45rem);
   line-height: 1.35;
 }
@@ -198,11 +211,11 @@ h1 {
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
   gap: 12px;
-  border: 1px solid rgba(119, 130, 124, 0.24);
+  border: 1px solid rgba(91, 76, 56, 0.18);
   border-radius: 8px;
   padding: 15px 16px;
-  color: #343342;
-  background: rgba(248, 251, 248, 0.92);
+  color: var(--ink);
+  background: rgba(251, 245, 234, 0.94);
   text-align: left;
   cursor: pointer;
   transition:
@@ -213,14 +226,14 @@ h1 {
 
 .answerOption:hover,
 .answerOption:focus-visible {
-  border-color: rgba(127, 107, 178, 0.55);
-  background: #ffffff;
+  border-color: rgba(169, 84, 58, 0.55);
+  background: #fffaf1;
   transform: translateY(-1px);
 }
 
 .answerOption.isSelected {
-  border-color: #7f6bb2;
-  background: #f3efff;
+  border-color: var(--terracotta);
+  background: #f2e2cf;
 }
 
 .answerLetter {
@@ -230,7 +243,7 @@ h1 {
   place-items: center;
   border-radius: 50%;
   color: #ffffff;
-  background: #7f6bb2;
+  background: var(--terracotta);
   font-weight: 700;
 }
 
@@ -240,7 +253,7 @@ h1 {
   border-radius: 999px;
   padding: 14px 22px;
   color: #ffffff;
-  background: #7f6bb2;
+  background: var(--terracotta);
   cursor: pointer;
   transition:
     background 160ms ease,
@@ -249,38 +262,48 @@ h1 {
 
 .primaryButton:hover,
 .primaryButton:focus-visible {
-  background: #6f59a8;
+  background: #8f422d;
   transform: translateY(-1px);
 }
 
 .ghostButton {
   width: fit-content;
-  border: 1px solid rgba(127, 107, 178, 0.28);
+  border: 1px solid rgba(169, 84, 58, 0.28);
   border-radius: 999px;
   padding: 10px 16px;
-  color: #635785;
-  background: rgba(255, 255, 255, 0.72);
+  color: #6f4a32;
+  background: rgba(251, 245, 234, 0.78);
   cursor: pointer;
 }
 
 .ghostButton:disabled {
-  color: #a8a7b2;
+  color: #a89a8a;
   cursor: not-allowed;
   opacity: 0.7;
 }
 
 .resultCode {
   margin: 18px 0 0;
-  color: #7f6bb2;
+  color: var(--terracotta);
   font-weight: 700;
 }
 
 .resultShort {
   max-width: 620px;
   margin: 14px 0 28px;
-  color: #454758;
+  color: #4d4337;
   font-size: 1.04rem;
   line-height: 1.8;
+}
+
+.resultLongReport {
+  width: min(100%, 860px);
+  margin: 0 auto;
+  display: grid;
+  gap: 0;
+  background:
+    radial-gradient(circle at 50% 4%, rgba(169, 84, 58, 0.08), transparent 28%),
+    var(--paper-soft);
 }
 
 .certificatePoster {
@@ -289,10 +312,10 @@ h1 {
   border-radius: 0;
   padding: clamp(22px, 4vw, 36px);
   background:
-    radial-gradient(circle at 75% 28%, rgba(127, 107, 178, 0.2), transparent 34%),
-    radial-gradient(circle at 35% 72%, rgba(86, 139, 116, 0.14), transparent 30%),
-    linear-gradient(100deg, rgba(255, 255, 255, 0.96) 0%, rgba(246, 250, 247, 0.72) 46%, rgba(247, 244, 251, 0.56) 100%),
-    #f8fbf8;
+    radial-gradient(circle at 50% 18%, rgba(183, 138, 80, 0.18), transparent 32%),
+    radial-gradient(circle at 50% 72%, rgba(102, 127, 99, 0.16), transparent 32%),
+    linear-gradient(180deg, rgba(251, 245, 234, 0.98), rgba(238, 222, 196, 0.7)),
+    var(--paper-soft);
 }
 
 .certificatePortrait {
@@ -310,15 +333,15 @@ h1 {
   overflow: hidden;
   border-radius: 28px;
   background:
-    radial-gradient(circle at 48% 38%, rgba(127, 107, 178, 0.22), transparent 34%),
-    radial-gradient(circle at 62% 62%, rgba(91, 137, 118, 0.14), transparent 36%),
-    rgba(255, 255, 255, 0.52);
+    radial-gradient(circle at 48% 38%, rgba(183, 138, 80, 0.18), transparent 34%),
+    radial-gradient(circle at 62% 62%, rgba(102, 127, 99, 0.18), transparent 36%),
+    rgba(255, 249, 239, 0.72);
 }
 
 .posterImagePanel::before {
   position: absolute;
   inset: 9% 10%;
-  border: 1px solid rgba(127, 107, 178, 0.2);
+  border: 1px solid rgba(102, 127, 99, 0.22);
   border-radius: 50%;
   content: "";
   transform: rotate(-10deg);
@@ -331,7 +354,7 @@ h1 {
   max-height: 94%;
   object-fit: contain;
   border-radius: 24px;
-  filter: drop-shadow(0 26px 32px rgba(57, 71, 78, 0.22));
+  filter: drop-shadow(0 26px 32px rgba(88, 66, 42, 0.22));
 }
 
 .certificateContent {
@@ -349,7 +372,7 @@ h1 {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 16px;
-  color: #7f6bb2;
+  color: var(--terracotta);
   font-size: 0.9rem;
   font-weight: 700;
 }
@@ -363,7 +386,7 @@ h1 {
 
 .certificateBody h2 {
   margin: 0;
-  color: #292836;
+  color: var(--ink);
   font-size: clamp(1.75rem, 4vw, 2.65rem);
   line-height: 1.25;
 }
@@ -382,23 +405,23 @@ h1 {
 }
 
 .dimensionChips span {
-  border: 1px solid rgba(127, 107, 178, 0.22);
+  border: 1px solid rgba(169, 84, 58, 0.22);
   border-radius: 999px;
   padding: 8px 12px;
-  color: #4b465d;
-  background: rgba(255, 255, 255, 0.72);
+  color: #5a432e;
+  background: rgba(255, 249, 239, 0.72);
   font-size: 0.92rem;
 }
 
 .certificateFooter {
   margin: 28px 0 0;
-  color: #7a7f88;
+  color: var(--muted);
   font-size: 0.9rem;
 }
 
 .reportSection {
-  width: min(100%, 1080px);
-  margin: 0 auto 48px;
+  width: 100%;
+  margin: 0 auto;
   display: grid;
   gap: 22px;
 }
@@ -406,22 +429,22 @@ h1 {
 .reportExport {
   display: grid;
   gap: 28px;
-  border: 1px solid rgba(114, 134, 124, 0.24);
-  border-radius: 8px;
+  border: 0;
+  border-radius: 0;
   padding: clamp(22px, 4vw, 34px);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(249, 252, 248, 0.9)),
-    #ffffff;
+    linear-gradient(180deg, rgba(251, 245, 234, 0.94), rgba(244, 234, 216, 0.95)),
+    var(--paper-soft);
 }
 
 .reportText {
-  color: #454758;
+  color: #4d4337;
   line-height: 1.85;
 }
 
 .reportText h2 {
   margin: 0 0 12px;
-  color: #292836;
+  color: var(--ink);
   font-size: clamp(1.45rem, 3vw, 2rem);
 }
 
@@ -436,10 +459,10 @@ h1 {
 }
 
 .dimensionReport {
-  border: 1px solid rgba(114, 134, 124, 0.24);
+  border: 1px solid var(--line);
   border-radius: 8px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 249, 239, 0.76);
 }
 
 .dimensionReportHeader {
@@ -451,7 +474,7 @@ h1 {
 
 .dimensionReportHeader h3 {
   margin: 0 0 8px;
-  color: #292836;
+  color: var(--ink);
   font-size: 1rem;
 }
 
@@ -462,7 +485,7 @@ h1 {
   place-items: center;
   border-radius: 50%;
   color: #ffffff;
-  background: #7f6bb2;
+  background: var(--terracotta);
   font-weight: 700;
 }
 
@@ -471,15 +494,15 @@ h1 {
   display: flex;
   overflow: hidden;
   border-radius: 999px;
-  background: rgba(127, 107, 178, 0.12);
+  background: rgba(102, 127, 99, 0.14);
 }
 
 .dimensionBarLeft {
-  background: #6e9b86;
+  background: var(--sage);
 }
 
 .dimensionBarRight {
-  background: #7f6bb2;
+  background: var(--terracotta);
 }
 
 .dimensionBarLabels {
@@ -487,20 +510,20 @@ h1 {
   justify-content: space-between;
   gap: 12px;
   margin-top: 8px;
-  color: #635785;
+  color: #6f4a32;
   font-size: 0.92rem;
   font-weight: 700;
 }
 
 .dimensionReport h4 {
   margin: 18px 0 8px;
-  color: #292836;
+  color: var(--ink);
   font-size: 1rem;
 }
 
 .dimensionReport p {
   margin: 0;
-  color: #454758;
+  color: #4d4337;
   line-height: 1.75;
 }
 
@@ -521,7 +544,7 @@ h1 {
 
 .shareStatus {
   margin: 0;
-  color: #6f7482;
+  color: var(--muted);
   font-size: 0.92rem;
 }
 

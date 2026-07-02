@@ -4,7 +4,7 @@ type HomeProps = {
 
 export function Home({ onStart }: HomeProps) {
   return (
-    <section className="homePage">
+    <section className="homePage homeCentered">
       <div className="heroText">
         <p className="eyebrow">Calculus Persona</p>
         <h1>高数解题人格测试</h1>
@@ -14,14 +14,6 @@ export function Home({ onStart }: HomeProps) {
         <button className="primaryButton" type="button" onClick={onStart}>
           开始测试
         </button>
-      </div>
-      <div className="heroNotebook" aria-hidden="true">
-        <div className="formulaField">
-          <span className="formulaSymbol">∫</span>
-          <span className="formulaLine">lim x→0</span>
-          <span className="formulaLine">Σ aₙ</span>
-          <span className="formulaTrace">判断、构造、拆解、统摄</span>
-        </div>
       </div>
     </section>
   );
