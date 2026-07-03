@@ -7,9 +7,9 @@ export function Home({ onStart }: HomeProps) {
     <section className="homePage homeCentered">
       <div className="heroText">
         <p className="eyebrow">Calculus Persona</p>
-        <h1>高数解题人格测试</h1>
+        <h1>高数人格测试</h1>
         <p className="heroCopy">
-          这不是数学能力测试，而是看你面对复杂问题时如何进入、判断、推进和取舍。
+          这个测试不评价你的数学能力，而是希望通过你的高数习惯，了解你的思维方式。
         </p>
         <button className="primaryButton" type="button" onClick={onStart}>
           开始测试
