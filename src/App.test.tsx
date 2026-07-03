@@ -26,9 +26,10 @@ describe("App", () => {
     render(<App />);
 
     expect(screen.getByRole("heading", { name: "高数人格测试" })).toBeInTheDocument();
-    expect(
-      screen.getByText("这个测试不评价你的数学能力，而是希望通过你的高数习惯，了解你的思维方式。"),
-    ).toBeInTheDocument();
+    expect(document.querySelector(".heroCopy")).toHaveTextContent(
+      "这个测试不评价你的数学能力，而是希望通过你的高数习惯，了解你的思维方式。",
+    );
+    expect(screen.getByText("了解你的思维方式。")).toHaveClass("keepTogether");
     expect(screen.queryByRole("heading", { name: "高数解题人格测试" })).not.toBeInTheDocument();
     expect(document.querySelector(".homePage")).toHaveClass("homeCentered");
     expect(document.querySelector(".heroNotebook")).not.toBeInTheDocument();

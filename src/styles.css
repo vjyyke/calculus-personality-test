@@ -72,11 +72,16 @@ h1 {
 }
 
 .heroCopy {
-  max-width: 620px;
+  max-width: 720px;
   margin: 20px 0 28px;
   color: #4d4337;
   font-size: 1.08rem;
   line-height: 1.8;
+  text-wrap: balance;
+}
+
+.keepTogether {
+  white-space: nowrap;
 }
 
 .heroNotebook {
