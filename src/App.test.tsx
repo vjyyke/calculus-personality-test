@@ -36,7 +36,7 @@ describe("App", () => {
     render(<App />);
 
     await user.click(screen.getByRole("button", { name: "开始测试" }));
-    expect(screen.getByText("你第一眼最想做哪道题？")).toBeInTheDocument();
+    expect(screen.getByText("四张卷子同时摆在你面前，你会先拿哪一张？")).toBeInTheDocument();
 
     for (let i = 0; i < 8; i += 1) {
       await clickFirstAnswer(user);
@@ -108,7 +108,7 @@ describe("App", () => {
     expect(screen.getByText("人格判定证书")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "返回修改答案" }));
 
-    expect(screen.getByText("你更满意哪种最终解法？")).toBeInTheDocument();
+    expect(screen.getByText("如果四份都能得分，你最想交哪种卷面？")).toBeInTheDocument();
     expect(getAnswerOptions()).toHaveLength(4);
     expect(screen.getByText("A.").closest("button")).toHaveClass("isSelected");
   });

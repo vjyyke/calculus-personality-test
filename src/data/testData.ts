@@ -1,7 +1,7 @@
 export type ScoreTag = "景" | "式" | "判" | "构" | "拆" | "统" | "稳" | "巧";
 export type LetterCode = "C" | "L" | "R" | "X" | "P" | "W" | "B" | "F";
 export type QuestionId = "q1" | "q2" | "q3" | "q4" | "q5" | "q6" | "q7" | "q8";
-export type BranchKey = "T" | "M" | "K" | "F" | "P" | "R" | "G";
+export type BranchKey = "T" | "M" | "K" | "P" | "R" | "G";
 
 export type AnswerOption = {
   id: "A" | "B" | "C" | "D";
@@ -54,76 +54,71 @@ export const tieBreakRules: Record<string, QuestionId[]> = {
 
 const q2OptionsByT: Record<string, AnswerOption[]> = {
   级数: [
-    { id: "A", text: "先试比值判别法。", scores: ["判", "稳"], set: { M: "标准法" } },
-    { id: "B", text: "先试根式判别法。", scores: ["判", "统"], set: { M: "标准法" } },
-    { id: "C", text: "找一个熟悉级数进行比较或放缩。", scores: ["构", "拆"], set: { M: "构造法" } },
-    { id: "D", text: "先化简通项，看主导项和等价关系。", scores: ["式", "构"], set: { M: "代数法" } },
+    { id: "A", text: "相邻两项的比例会不会直接给出趋势。", scores: ["判", "稳"], set: { M: "标准法" } },
+    { id: "B", text: "开 n 次根后，整体增长速度会不会变清楚。", scores: ["判", "统"], set: { M: "标准法" } },
+    { id: "C", text: "能不能找一个熟悉级数作比较。", scores: ["构", "拆"], set: { M: "构造法" } },
+    { id: "D", text: "通项里到底是哪一部分在主导。", scores: ["式", "构"], set: { M: "代数法" } },
   ],
   三重积分: [
-    { id: "A", text: "直接考虑球坐标。", scores: ["景", "统", "巧"], set: { M: "统一法" } },
-    { id: "B", text: "先试柱坐标。", scores: ["景", "稳"], set: { M: "几何法" } },
-    { id: "C", text: "先画投影，再决定积分次序。", scores: ["景", "拆", "稳"], set: { M: "拆解法" } },
-    { id: "D", text: "先看有没有对称性。", scores: ["统", "巧"], set: { M: "统一法" } },
+    { id: "A", text: "整块区域是不是适合球坐标。", scores: ["景", "统", "巧"], set: { M: "统一法" } },
+    { id: "B", text: "它绕哪条轴最自然。", scores: ["景", "稳"], set: { M: "几何法" } },
+    { id: "C", text: "投影能不能一层层写清楚。", scores: ["景", "拆", "稳"], set: { M: "拆解法" } },
+    { id: "D", text: "对称性能不能少算一部分。", scores: ["统", "巧"], set: { M: "统一法" } },
   ],
   一元积分: [
-    { id: "A", text: "先套三角换元、欧拉替换等常见套路。", scores: ["判", "稳"], set: { M: "标准法" } },
-    { id: "B", text: "根据根式结构自己设计替换。", scores: ["构", "巧"], set: { M: "构造法" } },
-    { id: "C", text: "找能凑微分或分部积分的局部结构。", scores: ["式", "构", "拆"], set: { M: "代数法" } },
-    { id: "D", text: "先判断它像哪个已知函数的导数。", scores: ["式", "判"], set: { M: "标准法" } },
+    { id: "A", text: "它像不像常见积分模板。", scores: ["判", "稳"], set: { M: "标准法" } },
+    { id: "B", text: "最麻烦的部分能不能设成新变量。", scores: ["构", "巧"], set: { M: "构造法" } },
+    { id: "C", text: "哪些局部能凑微分、拆分或分部。", scores: ["式", "构", "拆"], set: { M: "代数法" } },
+    { id: "D", text: "它像哪个函数求导来的。", scores: ["式", "判"], set: { M: "标准法" } },
   ],
   条件极值: [
-    { id: "A", text: "写拉格朗日乘子方程。", scores: ["判", "稳"], set: { M: "标准法" } },
-    { id: "B", text: "用约束消元，把问题降维。", scores: ["拆", "稳"], set: { M: "拆解法" } },
-    { id: "C", text: "先画区域或想象曲面形状。", scores: ["景", "拆"], set: { M: "几何法" } },
-    { id: "D", text: "寻找对称性或参数化约束。", scores: ["构", "统", "巧"], set: { M: "统一法" } },
+    { id: "A", text: "必要条件方程能不能直接列。", scores: ["判", "稳"], set: { M: "标准法" } },
+    { id: "B", text: "约束能不能先消掉一个变量。", scores: ["拆", "稳"], set: { M: "拆解法" } },
+    { id: "C", text: "约束图形大概长什么样。", scores: ["景", "拆"], set: { M: "几何法" } },
+    { id: "D", text: "变量有没有对称性或参数化入口。", scores: ["构", "统", "巧"], set: { M: "统一法" } },
   ],
 };
 
 const q3PromptByM: Record<string, string> = {
-  标准法: "你发现标准方法进入临界情况：比值极限等于 1、公式不直接适用，或条件还差一点。你怎么办？",
-  构造法: "你尝试换元、比较或构造，但中间式子没有变简单。你怎么办？",
-  代数法: "你尝试化简表达式，但主导项和余项纠缠在一起。你怎么办？",
-  几何法: "你尝试画图或想区域，但边界比预想复杂。你怎么办？",
-  拆解法: "你把题拆开以后，发现每一块都还要继续处理。你怎么办？",
-  统一法: "你感觉有整体结构，但一时找不到那个最合适的变换。你怎么办？",
+  标准法: "常规方法没奏效。",
+  构造法: "新入口还没展开。",
+  代数法: "化简后仍复杂。",
+  几何法: "图形越来越绕。",
+  拆解法: "小问题变多了。",
+  统一法: "统一入口还没出现。",
 };
 
 const q4PromptByK: Record<string, string> = {
-  标准卡点: "标准路线还能走，但看起来很长。你优先降低哪种复杂度？",
-  局部卡点: "小块越来越多，局部处理开始膨胀。你优先降低哪种复杂度？",
-  构造卡点: "你需要决定构造什么对象。你优先降低哪种复杂度？",
-  整体卡点: "你已经看到一点整体结构，但还不够清楚。你优先降低哪种复杂度？",
-};
-
-const q5PromptByF: Record<string, string> = {
-  条件: "你现在主要在检查定理条件、边界条件和定义域。接下来你会押哪种完成方式？",
-  图形: "你现在主要在处理图像、区域、坐标和几何关系。接下来你会押哪种完成方式？",
-  表达式: "你现在主要在处理表达式、主项、等价和变形。接下来你会押哪种完成方式？",
-  试探: "你现在主要在用特殊情况寻找规律。接下来你会押哪种完成方式？",
+  回查条件: "可靠性先过一遍。",
+  拆小块: "先把问题切小。",
+  换构造: "换入口试试。",
+  看整体: "先看大结构。",
 };
 
 const q6PromptByP: Record<string, string> = {
-  长线: "你的长路线还剩不少计算，但方向可靠。考试时间不多了，你优先保什么？",
-  框架: "你找到了一个可用框架，但需要检查条件。考试时间不多了，你优先保什么？",
-  构造: "你有一个很有希望的构造，但验证还没写全。考试时间不多了，你优先保什么？",
-  整体: "你看到了一个整体捷径，但它有点依赖洞察。考试时间不多了，你优先保什么？",
+  长线: "时间开始不够。",
+  框架: "条件还没补齐。",
+  构造: "构造还要说明。",
+  整体: "主线需要讲清。",
 };
 
 const q7GuideByR: Record<string, string> = {
-  稳健: "你希望稳稳拿分。",
-  冒险: "你想尽快抓住题眼。",
-  完整: "你担心边界和特殊情况。",
-  漂亮: "你想找到统一视角。",
+  稳健: "入口要可靠。",
+  冒险: "先抓题眼。",
+  完整: "小心例外。",
+  漂亮: "找统一主线。",
 };
 
 const q8PromptByG: Record<string, string> = {
-  图像入口: "你已经看到了图像关系。最后你更满意哪种解法？",
-  表达式入口: "你已经看到了表达式结构。最后你更满意哪种解法？",
-  定理入口: "你已经看到了可用定理。最后你更满意哪种解法？",
-  构造入口: "你已经看到了可能的构造。最后你更满意哪种解法？",
+  图像入口: "从图像进入。",
+  表达式入口: "从结构进入。",
+  定理入口: "从条件进入。",
+  构造入口: "从构造进入。",
 };
 
 const getBranchValue = (state: Partial<Record<BranchKey, string>>, key: BranchKey): string => state[key] ?? "";
+
+const getTopic = (state: Partial<Record<BranchKey, string>>): string => getBranchValue(state, "T") || "级数";
 
 const getPrompt = (
   state: Partial<Record<BranchKey, string>>,
@@ -131,33 +126,244 @@ const getPrompt = (
   prompts: Record<string, string>,
 ): string => prompts[getBranchValue(state, key)] ?? Object.values(prompts)[0];
 
+const withGuide = (
+  state: Partial<Record<BranchKey, string>>,
+  key: BranchKey,
+  guides: Record<string, string>,
+  routePrompts: Record<string, string>,
+): string => `${getPrompt(state, key, guides)} ${routePrompts[getTopic(state)] ?? routePrompts["级数"]}`;
+
+const q3PromptsByT: Record<string, string> = {
+  级数: "临界极限还是不清楚。你下一步会怎么做？",
+  三重积分: "上下界开始打架。你下一步会怎么做？",
+  一元积分: "式子变形后还是很缠。你下一步会怎么做？",
+  条件极值: "候选点和边界开始变多。你下一步会怎么做？",
+};
+
+const q3OptionsByT: Record<string, AnswerOption[]> = {
+  级数: [
+    { id: "A", text: "换一个比较对象重新夹。", scores: ["构", "巧"], set: { K: "换构造" } },
+    { id: "B", text: "回查判别法条件和临界值。", scores: ["判", "稳"], set: { K: "回查条件" } },
+    { id: "C", text: "先判断通项整体像哪类级数。", scores: ["景", "统"], set: { K: "看整体" } },
+    { id: "D", text: "把通项拆小，再分别估计。", scores: ["拆", "稳"], set: { K: "拆小块" } },
+  ],
+  三重积分: [
+    { id: "A", text: "换坐标，让麻烦边界变简单。", scores: ["构", "巧"], set: { K: "换构造" } },
+    { id: "B", text: "回查每个边界面对应的不等式。", scores: ["判", "稳"], set: { K: "回查条件" } },
+    { id: "C", text: "先重新看区域整体形状。", scores: ["景", "统"], set: { K: "看整体" } },
+    { id: "D", text: "先只处理一个投影面。", scores: ["拆", "稳"], set: { K: "拆小块" } },
+  ],
+  一元积分: [
+    { id: "A", text: "换一个变量，让最麻烦的部分消失。", scores: ["构", "巧"], set: { K: "换构造" } },
+    { id: "B", text: "回查模板、定义域和符号。", scores: ["判", "稳"], set: { K: "回查条件" } },
+    { id: "C", text: "先判断它整体像哪类原函数。", scores: ["景", "统"], set: { K: "看整体" } },
+    { id: "D", text: "把被积函数拆成几段处理。", scores: ["拆", "稳"], set: { K: "拆小块" } },
+  ],
+  条件极值: [
+    { id: "A", text: "换一种参数化或消元方式。", scores: ["构", "巧"], set: { K: "换构造" } },
+    { id: "B", text: "回查存在性、约束边界和必要条件。", scores: ["判", "稳"], set: { K: "回查条件" } },
+    { id: "C", text: "先看约束图形和等值线关系。", scores: ["景", "统"], set: { K: "看整体" } },
+    { id: "D", text: "分开处理内部点、边界点和特殊点。", scores: ["拆", "稳"], set: { K: "拆小块" } },
+  ],
+};
+
+const q4PromptsByT: Record<string, string> = {
+  级数: "如果只能先整理一部分，你会先整理哪一部分？",
+  三重积分: "如果只能先整理一部分，你会先整理哪一部分？",
+  一元积分: "如果只能先整理一部分，你会先整理哪一部分？",
+  条件极值: "如果只能先整理一部分，你会先整理哪一部分？",
+};
+
+const q4OptionsByT: Record<string, AnswerOption[]> = {
+  级数: [
+    { id: "A", text: "增长速度的整体排序。", scores: ["景", "统"] },
+    { id: "B", text: "判别法适用条件。", scores: ["判", "稳"] },
+    { id: "C", text: "通项因子和可约部分。", scores: ["式", "拆"] },
+    { id: "D", text: "候选比较级数。", scores: ["构", "巧"] },
+  ],
+  三重积分: [
+    { id: "A", text: "区域整体形状和对称性。", scores: ["景", "统"] },
+    { id: "B", text: "每个边界面的不等式。", scores: ["判", "稳"] },
+    { id: "C", text: "投影和积分层次。", scores: ["式", "拆"] },
+    { id: "D", text: "可用的坐标或参数化。", scores: ["构", "巧"] },
+  ],
+  一元积分: [
+    { id: "A", text: "最后可能落到哪类原函数。", scores: ["景", "统"] },
+    { id: "B", text: "换元范围、符号和反代条件。", scores: ["判", "稳"] },
+    { id: "C", text: "根式、三角、有理部分的结构。", scores: ["式", "拆"] },
+    { id: "D", text: "候选换元或辅助式。", scores: ["构", "巧"] },
+  ],
+  条件极值: [
+    { id: "A", text: "约束图形和等值线关系。", scores: ["景", "统"] },
+    { id: "B", text: "极值存在性和边界规则。", scores: ["判", "稳"] },
+    { id: "C", text: "候选点分别来自哪里。", scores: ["式", "拆"] },
+    { id: "D", text: "可用的参数化或对称变量。", scores: ["构", "巧"] },
+  ],
+};
+
+const q5PromptsByT: Record<string, string> = {
+  级数: "你准备怎么整理结论？",
+  三重积分: "你准备怎么写最终过程？",
+  一元积分: "你准备怎么完成答案？",
+  条件极值: "你准备怎么整理最终过程？",
+};
+
+const q5OptionsByT: Record<string, AnswerOption[]> = {
+  级数: [
+    { id: "A", text: "用整体增长关系说明收敛或发散。", scores: ["景", "统", "巧"], set: { P: "整体" } },
+    { id: "B", text: "按判别过程一步步写完整。", scores: ["拆", "稳"], set: { P: "长线" } },
+    { id: "C", text: "选一个贴切的比较对象。", scores: ["构", "巧"], set: { P: "构造" } },
+    { id: "D", text: "放进清楚的判别框架。", scores: ["判", "统", "稳"], set: { P: "框架" } },
+  ],
+  三重积分: [
+    { id: "A", text: "用整体形状和对称性压缩计算。", scores: ["景", "统", "巧"], set: { P: "整体" } },
+    { id: "B", text: "按投影分块，逐层写上下界。", scores: ["拆", "稳"], set: { P: "长线" } },
+    { id: "C", text: "用换元或参数化简化边界。", scores: ["构", "巧"], set: { P: "构造" } },
+    { id: "D", text: "先固定一个坐标框架。", scores: ["判", "统", "稳"], set: { P: "框架" } },
+  ],
+  一元积分: [
+    { id: "A", text: "把麻烦项合成一个统一变量。", scores: ["景", "统", "巧"], set: { P: "整体" } },
+    { id: "B", text: "按换元、化简、积分、反代写完整。", scores: ["拆", "稳"], set: { P: "长线" } },
+    { id: "C", text: "用一个关键替换把积分变简单。", scores: ["构", "巧"], set: { P: "构造" } },
+    { id: "D", text: "归入一个标准积分模板。", scores: ["判", "统", "稳"], set: { P: "框架" } },
+  ],
+  条件极值: [
+    { id: "A", text: "用图形和对称性判断极值位置。", scores: ["景", "统", "巧"], set: { P: "整体" } },
+    { id: "B", text: "把内部、边界、特殊点逐个比较。", scores: ["拆", "稳"], set: { P: "长线" } },
+    { id: "C", text: "用参数或新变量简化比较。", scores: ["构", "巧"], set: { P: "构造" } },
+    { id: "D", text: "先搭好极值存在和必要条件框架。", scores: ["判", "统", "稳"], set: { P: "框架" } },
+  ],
+};
+
+const q6PromptsByT: Record<string, string> = {
+  级数: "这道级数题还没写完。你优先保什么？",
+  三重积分: "这道三重积分题还没写完。你优先保什么？",
+  一元积分: "这道一元积分题还没写完。你优先保什么？",
+  条件极值: "这道条件极值题还没写完。你优先保什么？",
+};
+
+const q6OptionsByT: Record<string, AnswerOption[]> = {
+  级数: [
+    { id: "A", text: "先写关键极限或比较对象。", scores: ["巧", "构"], set: { R: "冒险" } },
+    { id: "B", text: "补临界值、正项条件和特殊情况。", scores: ["拆", "稳"], set: { R: "完整" } },
+    { id: "C", text: "宁可少写，也确保判别法和结论无误。", scores: ["稳", "判"], set: { R: "稳健" } },
+    { id: "D", text: "让推导形成一条主线。", scores: ["统", "巧"], set: { R: "漂亮" } },
+  ],
+  三重积分: [
+    { id: "A", text: "先写关键坐标变换和雅可比。", scores: ["巧", "构"], set: { R: "冒险" } },
+    { id: "B", text: "补边界、投影边缘和分块。", scores: ["拆", "稳"], set: { R: "完整" } },
+    { id: "C", text: "宁可少算，也确保区域和上下界无误。", scores: ["稳", "判"], set: { R: "稳健" } },
+    { id: "D", text: "让阅卷人一眼看懂区域和坐标。", scores: ["统", "巧"], set: { R: "漂亮" } },
+  ],
+  一元积分: [
+    { id: "A", text: "先写关键替换和化简后的积分。", scores: ["巧", "构"], set: { R: "冒险" } },
+    { id: "B", text: "补符号、常数、分段和反代范围。", scores: ["拆", "稳"], set: { R: "完整" } },
+    { id: "C", text: "宁可结果保守，也确保换元合法。", scores: ["稳", "判"], set: { R: "稳健" } },
+    { id: "D", text: "让整个思路自然连贯。", scores: ["统", "巧"], set: { R: "漂亮" } },
+  ],
+  条件极值: [
+    { id: "A", text: "先写最可能的极值点和关键代入。", scores: ["巧", "构"], set: { R: "冒险" } },
+    { id: "B", text: "补边界、端点和特殊参数。", scores: ["拆", "稳"], set: { R: "完整" } },
+    { id: "C", text: "宁可少展开，也确保候选点来源合法。", scores: ["稳", "判"], set: { R: "稳健" } },
+    { id: "D", text: "让约束和极值位置关系更直观。", scores: ["统", "巧"], set: { R: "漂亮" } },
+  ],
+};
+
+const q7PromptsByT: Record<string, string> = {
+  级数: "现在要讨论含参数级数的敛散性。你第一眼优先看什么？",
+  三重积分: "现在区域边界会随参数变化。你第一眼优先看什么？",
+  一元积分: "现在要讨论含参数积分。你第一眼优先看什么？",
+  条件极值: "现在约束或目标函数里有参数。你第一眼优先看什么？",
+};
+
+const q7OptionsByT: Record<string, AnswerOption[]> = {
+  级数: [
+    { id: "A", text: "不同参数下适合哪些判别法。", scores: ["判", "稳"], set: { G: "定理入口" } },
+    { id: "B", text: "通项趋势和参数临界点。", scores: ["景", "统"], set: { G: "图像入口" } },
+    { id: "C", text: "能不能构造一个含参比较对象。", scores: ["构", "巧"], set: { G: "构造入口" } },
+    { id: "D", text: "参数出现在通项的哪一层结构里。", scores: ["式", "拆"], set: { G: "表达式入口" } },
+  ],
+  三重积分: [
+    { id: "A", text: "坐标变换和对称性在哪些参数下成立。", scores: ["判", "稳"], set: { G: "定理入口" } },
+    { id: "B", text: "区域形状如何随参数改变。", scores: ["景", "统"], set: { G: "图像入口" } },
+    { id: "C", text: "能不能用缩放或换元固定区域。", scores: ["构", "巧"], set: { G: "构造入口" } },
+    { id: "D", text: "边界方程怎样拆成上下界。", scores: ["式", "拆"], set: { G: "表达式入口" } },
+  ],
+  一元积分: [
+    { id: "A", text: "能不能换极限、积分或对参数求导。", scores: ["判", "稳"], set: { G: "定理入口" } },
+    { id: "B", text: "奇点、零点和面积如何随参数变化。", scores: ["景", "统"], set: { G: "图像入口" } },
+    { id: "C", text: "能不能找含参数换元或控制函数。", scores: ["构", "巧"], set: { G: "构造入口" } },
+    { id: "D", text: "参数影响主导项还是可积性。", scores: ["式", "拆"], set: { G: "表达式入口" } },
+  ],
+  条件极值: [
+    { id: "A", text: "哪些参数下极值存在、条件有效。", scores: ["判", "稳"], set: { G: "定理入口" } },
+    { id: "B", text: "约束图形和等值线如何移动。", scores: ["景", "统"], set: { G: "图像入口" } },
+    { id: "C", text: "能不能统一参数化候选点。", scores: ["构", "巧"], set: { G: "构造入口" } },
+    { id: "D", text: "参数进入约束、目标还是候选式。", scores: ["式", "拆"], set: { G: "表达式入口" } },
+  ],
+};
+
+const q8PromptsByT: Record<string, string> = {
+  级数: "你最想交哪种卷面？",
+  三重积分: "你最想交哪种卷面？",
+  一元积分: "你最想交哪种卷面？",
+  条件极值: "你最想交哪种卷面？",
+};
+
+const q8OptionsByT: Record<string, AnswerOption[]> = {
+  级数: [
+    { id: "A", text: "一份几行推出结论的答案：比较对象选得准，过程很短。", scores: ["式", "构", "巧"] },
+    { id: "B", text: "一份规范完整的答案：判别条件、极限、结论都稳。", scores: ["判", "稳"] },
+    { id: "C", text: "一份一点不漏的答案：每个参数范围和临界值都处理。", scores: ["拆", "稳"] },
+    { id: "D", text: "一份一看就懂的答案：增长速度和临界点很直观。", scores: ["景", "统", "巧"] },
+  ],
+  三重积分: [
+    { id: "A", text: "一份几行化简区域的答案：一个变换把复杂边界变简单。", scores: ["式", "构", "巧"] },
+    { id: "B", text: "一份规范完整的答案：范围、雅可比和计算都稳。", scores: ["判", "稳"] },
+    { id: "C", text: "一份一点不漏的答案：每块区域和每层上下界都完整。", scores: ["拆", "稳"] },
+    { id: "D", text: "一份一看就懂的答案：形状和对称性清楚，计算短很多。", scores: ["景", "统", "巧"] },
+  ],
+  一元积分: [
+    { id: "A", text: "一份几行变简单的答案：一个替换让积分变顺。", scores: ["式", "构", "巧"] },
+    { id: "B", text: "一份规范完整的答案：换元依据、反代范围和常数都稳。", scores: ["判", "稳"] },
+    { id: "C", text: "一份一点不漏的答案：拆项、分部、分段和符号都照顾到。", scores: ["拆", "稳"] },
+    { id: "D", text: "一份一看就懂的答案：原函数类型清楚，路线很短。", scores: ["景", "统", "巧"] },
+  ],
+  条件极值: [
+    { id: "A", text: "一份几行完成比较的答案：用新变量化掉约束。", scores: ["式", "构", "巧"] },
+    { id: "B", text: "一份规范完整的答案：存在性、必要条件、候选点比较都稳。", scores: ["判", "稳"] },
+    { id: "C", text: "一份一点不漏的答案：内部、边界、端点、特殊参数都列清。", scores: ["拆", "稳"] },
+    { id: "D", text: "一份一看就懂的答案：约束和等值线关系很直观。", scores: ["景", "统", "巧"] },
+  ],
+};
+
 export const questions: Question[] = [
   {
     id: "q1",
-    title: "你第一眼最想做哪道题？",
-    prompt: "四道题难度相近，你会优先选哪一道？",
+    title: "四张卷子同时摆在你面前，你会先拿哪一张？",
+    prompt: "四道题分值和难度差不多。你第一眼会更愿意从哪一题开始？",
     options: [
       {
         id: "A",
-        text: "判断一个含有阶乘、指数和幂的正项级数是否收敛。",
+        text: "正项级数：通项含阶乘、指数和幂。",
         scores: ["式", "判"],
         set: { T: "级数" },
       },
       {
         id: "B",
-        text: "计算一个由球面、圆锥面和坐标面围成区域上的三重积分。",
+        text: "三重积分：区域由球面、圆锥面和坐标面围成。",
         scores: ["景", "统"],
         set: { T: "三重积分" },
       },
       {
         id: "C",
-        text: "计算一个含根式、三角函数和有理式混合的一元积分。",
+        text: "一元积分：式子里混着根式、三角函数和有理式。",
         scores: ["式", "构"],
         set: { T: "一元积分" },
       },
       {
         id: "D",
-        text: "求一个多元函数在约束条件下的最大值和最小值。",
+        text: "条件极值：函数带约束，要找最大最小值。",
         scores: ["判", "稳"],
         set: { T: "条件极值" },
       },
@@ -165,129 +371,51 @@ export const questions: Question[] = [
   },
   {
     id: "q2",
-    title: "你会怎么开局？",
-    prompt: "根据你刚才选择的题型，选一个最自然的开局方式。",
+    title: "你在草稿纸上写下的第一步是什么？",
+    prompt: (state) =>
+      ({
+        级数: "一个正项级数同时含有 n!、指数和幂函数。你第一眼优先看什么？",
+        三重积分: "区域由球面、圆锥面和坐标面围成。你第一眼优先看什么？",
+        一元积分: "一个积分里同时有根式和三角函数。你第一眼优先看什么？",
+        条件极值: "题目给了函数和约束。你第一眼优先看什么？",
+      })[getTopic(state)] ?? "一个正项级数同时含有 n!、指数和幂函数。你第一眼优先看什么？",
     options: (state) => q2OptionsByT[getBranchValue(state, "T")] ?? q2OptionsByT["级数"],
   },
   {
     id: "q3",
-    title: "如果你的开局卡住了",
-    prompt: (state) => getPrompt(state, "M", q3PromptByM),
-    options: [
-      { id: "A", text: "回到更标准、更可验证的方法。", scores: ["判", "稳"], set: { K: "标准卡点" } },
-      { id: "B", text: "把问题拆成更小的局部。", scores: ["拆", "稳"], set: { K: "局部卡点" } },
-      {
-        id: "C",
-        text: "换一个构造：新换元、新比较对象或新辅助函数。",
-        scores: ["构", "巧"],
-        set: { K: "构造卡点" },
-      },
-      { id: "D", text: "停下来看整体结构、图像或对称性。", scores: ["景", "统"], set: { K: "整体卡点" } },
-    ],
+    title: "第一步没那么顺，你怎么调整？",
+    prompt: (state) => withGuide(state, "M", q3PromptByM, q3PromptsByT),
+    options: (state) => q3OptionsByT[getTopic(state)] ?? q3OptionsByT["级数"],
   },
   {
     id: "q4",
-    title: "你怎么降低复杂度？",
-    prompt: (state) => getPrompt(state, "K", q4PromptByK),
-    options: [
-      { id: "A", text: "先列条件清单，确认每一步能不能用。", scores: ["判", "稳"], set: { F: "条件" } },
-      { id: "B", text: "先画图、画区域或选坐标，让关系变直观。", scores: ["景", "拆"], set: { F: "图形" } },
-      {
-        id: "C",
-        text: "先处理表达式主项、等价关系或可化简结构。",
-        scores: ["式", "构"],
-        set: { F: "表达式" },
-      },
-      { id: "D", text: "先试特殊值、小例子或简单截面，找题眼。", scores: ["巧", "拆"], set: { F: "试探" } },
-    ],
+    title: "草稿纸已经有点乱，先重整哪里？",
+    prompt: (state) => withGuide(state, "K", q4PromptByK, q4PromptsByT),
+    options: (state) => q4OptionsByT[getTopic(state)] ?? q4OptionsByT["级数"],
   },
   {
     id: "q5",
-    title: "你会押哪种完成方式？",
-    prompt: (state) => getPrompt(state, "F", q5PromptByF),
-    options: [
-      { id: "A", text: "沿长路线完整算完，保证每一步能检查。", scores: ["拆", "稳"], set: { P: "长线" } },
-      {
-        id: "B",
-        text: "找一个定理或判别框架，把问题收住。",
-        scores: ["判", "统", "稳"],
-        set: { P: "框架" },
-      },
-      {
-        id: "C",
-        text: "设计一个替换、比较对象或辅助函数。",
-        scores: ["构", "巧"],
-        set: { P: "构造" },
-      },
-      {
-        id: "D",
-        text: "寻找对称性、统一坐标或整体视角。",
-        scores: ["景", "统", "巧"],
-        set: { P: "整体" },
-      },
-    ],
+    title: "已经有方向了，准备怎么完成答案？",
+    prompt: (state) => q5PromptsByT[getTopic(state)] ?? q5PromptsByT["级数"],
+    options: (state) => q5OptionsByT[getTopic(state)] ?? q5OptionsByT["级数"],
   },
   {
     id: "q6",
-    title: "考试时间不多了",
-    prompt: (state) => getPrompt(state, "P", q6PromptByP),
-    options: [
-      { id: "A", text: "保正确率，宁可写得朴素一点。", scores: ["稳", "判"], set: { R: "稳健" } },
-      { id: "B", text: "保速度和题眼，先把核心答案拿下。", scores: ["巧", "构"], set: { R: "冒险" } },
-      { id: "C", text: "保完整性，边界和分类不能漏。", scores: ["拆", "稳"], set: { R: "完整" } },
-      { id: "D", text: "保结构感，让解法尽量统一漂亮。", scores: ["统", "巧"], set: { R: "漂亮" } },
-    ],
+    title: "只剩几分钟，怎么取舍？",
+    prompt: (state) => withGuide(state, "P", q6PromptByP, q6PromptsByT),
+    options: (state) => q6OptionsByT[getTopic(state)] ?? q6OptionsByT["级数"],
   },
   {
     id: "q7",
-    title: "综合题第一反应",
-    prompt: (state) =>
-      `${q7GuideByR[getBranchValue(state, "R")] ?? q7GuideByR["稳健"]} 一道题同时含有参数、极限和积分。你第一步会做什么？`,
-    options: [
-      {
-        id: "A",
-        text: "画出参数变化时的图像、区域或几何关系。",
-        scores: ["景", "统"],
-        set: { G: "图像入口" },
-      },
-      {
-        id: "B",
-        text: "看表达式的主导项、等价形式和可化简结构。",
-        scores: ["式", "拆"],
-        set: { G: "表达式入口" },
-      },
-      {
-        id: "C",
-        text: "检查能否交换极限、积分、求导或求和。",
-        scores: ["判", "稳"],
-        set: { G: "定理入口" },
-      },
-      {
-        id: "D",
-        text: "构造控制函数、替换变量或比较对象。",
-        scores: ["构", "巧"],
-        set: { G: "构造入口" },
-      },
-    ],
+    title: "同题型压轴题，你从哪里进入？",
+    prompt: (state) => withGuide(state, "R", q7GuideByR, q7PromptsByT),
+    options: (state) => q7OptionsByT[getTopic(state)] ?? q7OptionsByT["级数"],
   },
   {
     id: "q8",
-    title: "你更满意哪种最终解法？",
-    prompt: (state) => getPrompt(state, "G", q8PromptByG),
-    options: [
-      { id: "A", text: "标准长解：每一步都有依据，虽然不短。", scores: ["判", "稳"] },
-      {
-        id: "B",
-        text: "几何整体解：用图像、坐标或对称性把问题整体化。",
-        scores: ["景", "统", "巧"],
-      },
-      {
-        id: "C",
-        text: "代数构造解：用换元、辅助函数或等价变形改造题目。",
-        scores: ["式", "构", "巧"],
-      },
-      { id: "D", text: "分类排查解：内部、边界、特殊点逐一处理。", scores: ["拆", "稳"] },
-    ],
+    title: "如果四份都能得分，你最想交哪种卷面？",
+    prompt: (state) => withGuide(state, "G", q8PromptByG, q8PromptsByT),
+    options: (state) => q8OptionsByT[getTopic(state)] ?? q8OptionsByT["级数"],
   },
 ];
 
