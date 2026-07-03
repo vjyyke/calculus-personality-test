@@ -135,16 +135,16 @@ describe("result data", () => {
         .map((question) => [question.id, getQuestionOptions(question, state).map((option) => option.text)]),
     );
 
-    expect(prompts.q3).toContain("统一入口还没出现。");
-    expect(prompts.q3).toContain("上下界开始打架。");
+    expect(prompts.q3).toContain("你的解法用不了，");
+    expect(prompts.q3).toContain("区域很复杂。");
     expect(optionTexts.q4).toContain("区域整体形状和对称性。");
-    expect(optionTexts.q5).toContain("用换元或参数化简化边界。");
-    expect(prompts.q6).toContain("条件还没补齐。");
+    expect(optionTexts.q5).toContain("先用换元或参数化简化边界。");
+    expect(prompts.q6).toContain("模板有点想不起来了，");
     expect(optionTexts.q6).toContain("补边界、投影边缘和分块。");
     expect(prompts.q7).toContain("找统一主线。");
     expect(optionTexts.q7).toContain("区域形状如何随参数改变。");
     expect(prompts.q8).toContain("从图像进入。");
-    expect(optionTexts.q8).toContain("一份几行化简区域的答案：一个变换把复杂边界变简单。");
+    expect(optionTexts.q8).toContain("一份几行就推出结论的答案。");
   });
 
   it("uses the upgraded q8 option order and scoring", () => {
@@ -160,7 +160,39 @@ describe("result data", () => {
       ["拆", "稳"],
       ["景", "统", "巧"],
     ]);
-    expect(options[0].text).toContain("比较对象选得准");
-    expect(options[3].text).toContain("增长速度和临界点很直观");
+    expect(options[0].text).toBe("一份几行就推出结论的答案。");
+    expect(options[1].text).toBe("一份步步完整的答案。");
+    expect(options[2].text).toBe("一份证明完备的答案。");
+    expect(options[3].text).toBe("一份解释清晰的答案。");
+  });
+
+  it("matches the latest visible quiz wording from the markdown", () => {
+    const q1 = questions.find((question) => question.id === "q1");
+    const q2 = questions.find((question) => question.id === "q2");
+    const q4 = questions.find((question) => question.id === "q4");
+    const q6 = questions.find((question) => question.id === "q6");
+    const q8 = questions.find((question) => question.id === "q8");
+
+    expect(q1?.title).toBe("四张卷子同时摆在你面前，你会选择做哪张？");
+    expect(q1?.prompt).toBe("卷子的分值和难度都差不多。你会更愿意从哪一题开始？");
+
+    expect(typeof q2?.prompt === "function" ? q2.prompt({ T: "级数" }) : q2?.prompt).toBe(
+      "一个正项级数同时含有 n!、指数和幂函数。你优先看什么？",
+    );
+    expect(getQuestionOptions(q2!, { T: "级数" })[0].text).toBe("看相邻两项之比，极限判别法。");
+    expect(getQuestionOptions(q2!, { T: "一元积分" })[1].text).toBe("可不可以变量替换。");
+
+    expect(q4?.title).toBe("草稿纸已经有点乱了，先做什么？");
+    expect(typeof q4?.prompt === "function" ? q4.prompt({ T: "一元积分", K: "回查条件" }) : q4?.prompt).toContain(
+      "你确定了真的没有算错，",
+    );
+
+    expect(q6?.title).toBe("考试只剩几分钟了！");
+    expect(typeof q6?.prompt === "function" ? q6.prompt({ T: "级数", P: "长线" }) : q6?.prompt).toContain(
+      "没办法把细节都写全了，",
+    );
+    expect(getQuestionOptions(q6!, { T: "级数" })[0].text).toBe("关键极限或比较对象。");
+
+    expect(q8?.title).toBe("如果都正确，你最想交哪种卷面？");
   });
 });
