@@ -108,7 +108,7 @@ describe("App", () => {
     expect(screen.getByText("人格判定证书")).toBeInTheDocument();
     await user.click(screen.getByRole("button", { name: "返回修改答案" }));
 
-    expect(screen.getByText("如果都正确，你最想交哪种卷面？")).toBeInTheDocument();
+    expect(screen.getByText("考试前最后一小时")).toBeInTheDocument();
     expect(getAnswerOptions()).toHaveLength(4);
     expect(screen.getByText("A.").closest("button")).toHaveClass("isSelected");
   });
